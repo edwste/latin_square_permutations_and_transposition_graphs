@@ -1,0 +1,2 @@
+# latin_square_permutations_and_transposition_graphs
+exploration of latin squares via permutations and graphs
