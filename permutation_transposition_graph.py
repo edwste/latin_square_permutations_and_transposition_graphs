@@ -52,7 +52,7 @@ transposition_set = generate_transposition_set(n)
 edge_list = []
 
 
-def bfs_permutation(i,trans_set):
+def dfs_permutation(i,trans_set):
 	#we want list of edges here
 	for a in trans_set:
 		#transpose
@@ -63,9 +63,9 @@ def bfs_permutation(i,trans_set):
 			if trans==list(perm):
 				if (pe[i],pe[c]) not in edge_list:
 					edge_list.append((pe[i],pe[c]))
-					bfs_permutation(c,trans_set)
+					dfs_permutation(c,trans_set)
 
-output=bfs_permutation(0,transposition_set)
+output=dfs_permutation(0,transposition_set)
 
 G=nx.Graph()
 G.add_nodes_from(pe)
