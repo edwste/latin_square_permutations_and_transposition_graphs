@@ -6,7 +6,7 @@ import math as mp
 import sys
 import collections as cl
 
-n=5
+n=6
 
 
 sys.setrecursionlimit(3000)
@@ -71,9 +71,8 @@ G=nx.Graph()
 G.add_nodes_from(pe)
 G.add_edges_from(edge_list)
 
-#TODO: get list of number of edges from each pe reference
+#get edge count of each node
 edge_count_list=[]
-
 for i,p in enumerate(pe):
 	edge_count = 0
 	for edge in edge_list:
@@ -84,10 +83,20 @@ print(edge_count_list)
 c=cl.Counter(edge_count_list)
 print(c)
 
+#color nodes
 node_colors = []
 colors = ['red','yellow','blue','green','orange','red','yellow','blue','green','orange','yellow','blue','red']
 for i in edge_count_list:
 	node_colors.append(colors[i])
+
+#partite check
+counter=0
+for e in edge_list: 
+	i1,i2 = pe.index(e[0]),pe.index(e[1])
+	if edge_count_list[i1]==edge_count_list[i2]:
+		print(pe[i1],pe[i2],edge_count_list[i1],edge_count_list[i2])
+		counter=counter+1
+print(counter)
 
 nx.draw(G, with_labels=True,node_color=node_colors)
 plt.show()
